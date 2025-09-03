@@ -1,3 +1,7 @@
+## Version 1.0.6
+
+* Updated YUI Compressor to latest in repo with fix for `calc()` with spacing in it!
+
 ## Version 1.0.5
 
 * JS errors now reported in issue sidebar

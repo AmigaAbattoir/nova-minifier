@@ -66,7 +66,7 @@ class MinifierService {
 	minifyCss(source) {
 		var targetFile = source.replace(/\.[^/\\.]+$/,".min.css");
 
-		var path = nova.path.join(nova.path.join(nova.extension.path, "Jars"),"yuicompressor-2.4.8.jar");
+		var path = nova.path.join(nova.path.join(nova.extension.path, "Jars"),"yuicompressor-2.4.9.jar");
 		var args = new Array;
 		args.push("java");
 		args.push("-jar");
