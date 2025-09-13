@@ -7,7 +7,7 @@ This is a first attempt at a Nova extension and an attempt to migrate from Eclip
 
 ## Requirements
 
-Nothing. The extension is packed with YUICompressor (V2.4.8) and Google Closure Compiler (20180202).
+- **Java (8+)** - The extension is packed with the jars for YUICompressor (V2.4.8) and Google Closure Compiler (20180202).
 
 ## Usage
 
