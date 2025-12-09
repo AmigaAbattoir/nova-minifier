@@ -1,13 +1,15 @@
 
-**Minifier** provides the ability to save compressed JavaScript and CSS file. It uses the [YUI Compressor](https://yui.github.io/yuicompressor/) for CSS and [Google Closure](https://developers.google.com/closure/compiler/docs/gettingstarted_app) for JavaScript.
+# Minifier
 
-This is a first attempt at a Nova extension and an attempt to migrate from Eclipse. This extension is based on Eclipse's [Minifier plug-in](https://github.com/mnlipp/EclipseMinifyBuilder), with the preferences I use for work projects for the Google Closure: `--warning_level QUIET --compilation_level SIMPLE` and to generate the source map
+**Minifier** provides the ability to save compressed JavaScript and CSS file. It uses the [YUI Compressor v2.4.9](https://yui.github.io/yuicompressor/) for CSS and [Google Closure v2020601](https://developers.google.com/closure/compiler/docs/gettingstarted_app) for JavaScript.
+
+This was my first attempt at a Nova extension and an attempt to migrate from Eclipse. This extension is based on Eclipse's [Minifier plug-in](https://github.com/mnlipp/EclipseMinifyBuilder), with the preferences I use for work projects for the Google Closure: `--warning_level QUIET --compilation_level SIMPLE` and to generate the source map
 
 (Option to change settings may come in the future)
 
 ## Requirements
 
-- **Java (8+)** - The extension is packed with the jars for YUICompressor (V2.4.8) and Google Closure Compiler (20180202).
+- **Java (11+)** - The extension is packed with the jars for YUICompressor (v2.4.9) and Google Closure Compiler (v202061).
 
 ## Usage
 

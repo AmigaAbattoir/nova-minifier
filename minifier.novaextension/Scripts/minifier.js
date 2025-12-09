@@ -138,8 +138,7 @@ class MinifierService {
 
 		var lastSlashIndex = source.lastIndexOf("/");
 		var mapFilename = mapFile.substring(lastSlashIndex+1,mapFile.length);
-//		var path = nova.path.join(nova.path.join(nova.extension.path, "Jars"),"closure-compiler-v20220301.jar");
-		var path = nova.path.join(nova.path.join(nova.extension.path, "Jars"),"closure-compiler-v20180204.jar");
+		var path = nova.path.join(nova.path.join(nova.extension.path, "Jars"),"closure-compiler-v20220601.jar");
 
 		var args = new Array;
 		args.push("java");
@@ -201,30 +200,35 @@ class MinifierService {
 					clearTimeout(nova._minifierNotificationTimer);
 				}
 
-				// Create an issue and add to the issue collector
-				// Match 1 - File name
-				// Match 2 - line number
-				// Match 3 - Error message
-				var msg = stdErr[0].match(/(.+):(\d+):\s(.+)/);
+				var message = "";
+				if(stdErr.indexOf("java.lang.UnsupportedClassVersionError")!=-1) {
+					message = "You need a different version of Java installed:\n\n" + stdErr;
+				} else {
+					// Create an issue and add to the issue collector
+					// Match 1 - File name
+					// Match 2 - line number
+					// Match 3 - Error message
+					var msg = stdErr[0].match(/(.+):(\d+):\s(.+)/);
 
-				var issue = new Issue();
-				issue.message = msg[3].replace("ERROR - ","");
-				issue.code =  "E12";
-				issue.severity = IssueSeverity.Error;
-				issue.line = msg[2];
+					var issue = new Issue();
+					issue.message = msg[3].replace("ERROR - ","");
+					issue.code =  "E12";
+					issue.severity = IssueSeverity.Error;
+					issue.line = msg[2];
 
-				// If there are 3 lines of errors, the last one is a pointer to where the column is
-				var column = 1;
-				if(stdErr.length==3) {
-					column = stdErr[2].indexOf("^");
+					// If there are 3 lines of errors, the last one is a pointer to where the column is
+					var column = 1;
+					if(stdErr.length==3) {
+						column = stdErr[2].indexOf("^");
+					}
+					issue.column = column;
+
+					// Pass to issues
+					issuesCol.set(doc.uri, [issue]);
+
+					// Display message
+					message = stdErr.splice(0,2);
 				}
-				issue.column = column;
-
-				// Pass to issues
-				issuesCol.set(doc.uri, [issue]);
-
-				// Display message
-				var message = stdErr.splice(0,2);
 
 				var request = new NotificationRequest("min-mess");
 				request.title = "Minifier JS Error";

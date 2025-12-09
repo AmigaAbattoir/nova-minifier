@@ -1,3 +1,7 @@
+## Version 1.0.7
+
+* Updated Google Closure to v20220601 to allow minifying `??`
+
 ## Version 1.0.6
 
 * Updated YUI Compressor to latest in repo with fix for `calc()` with spacing in it!
